@@ -8,11 +8,25 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: [1,2,3]
+      messages: [],
+      data: [],
+      loaded: false,
     }
   }
 
+  componentWillMount(){
+    fetch("http://localhost:8082/api/messages")
+    .then(response => response.json())
+    .then(response => {
+      this.setState({
+        messages: response
+      })
+    })
+  }
+
+
   render() {
+
     return (
       <div className="App">
         <Toolbar />
