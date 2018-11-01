@@ -10,11 +10,10 @@ class App extends Component {
     this.state = {
       messages: [],
       data: [],
-      loaded: false,
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     fetch("http://localhost:8082/api/messages")
     .then(response => response.json())
     .then(response => {
@@ -24,13 +23,26 @@ class App extends Component {
     })
   }
 
+  messageRead = (id) => {
+    console.log('message read', id)
+    const updatedMessages = this.state.messages.map(message => {
+      if (message.id === id) {
+        message.read = !message.read;
+      } 
+      return message;
+    })
+
+    this.setState({
+      messages: updatedMessages
+    })
+  }
 
   render() {
 
     return (
       <div className="App">
         <Toolbar />
-        <MessageList messages={this.state.messages}/>
+        <MessageList messages={this.state.messages} messageRead={this.messageRead}/>
       </div>
     );
   }

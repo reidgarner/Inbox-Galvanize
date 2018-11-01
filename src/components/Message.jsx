@@ -3,18 +3,18 @@ import '../App.css';
 
 const Message = (props) => {
     return (
-        <div class={true ? "row message unread" : "row message read"}>
-            <div class="col-xs-1">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <input type="checkbox" />
+        <div className={props.email.read ? "row message read" : "row message unread"} onClick={() => props.messageRead(props.email.id)}>
+            <div className="col-xs-1">
+                <div className="row">
+                    <div className="col-xs-2">
+                        <input type="checkbox" checked={props.email.selected} />
                     </div>
-                    <div class="col-xs-2">
-                        <i class={true ? "star fa fa-star-o" : "star fa fa-star"}></i>
+                    <div className="col-xs-2">
+                        <i className={true ? "star fa fa-star-o" : "star fa fa-star"}></i>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-11">
+            <div className="col-xs-11">
                 <a href="#">
                     {props.email.subject}
                 </a>
