@@ -25,6 +25,10 @@ class App extends Component {
 
   markAsReadButtonClicked = () => {
     console.log("markAsReadButtonClicked")
+    //TODO: For each selected message, mark it as read.
+    const selectedMessages = this.state.messages.filter(message => message.selected === true)
+    console.log("selectedMessages", selectedMessages)
+    selectedMessages.forEach(message => this.messageRead(message.id))
   }
 
   messageSelected = async (id) => {
