@@ -23,8 +23,28 @@ class App extends Component {
     })
   }
 
-  messageRead = (id) => {
+  messageRead = async (id) => {
     console.log('message read', id)
+
+    // Patch Request Example \|/
+
+    let message = {
+      messageIds: [id],
+      command: "read",
+      "read": true
+    }
+
+    const result = await fetch('http://localhost:8082/api/messages', {
+      method: 'PATCH',
+      body: JSON.stringify(message),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+
+    // Patch Request Example ^^^
+
     const updatedMessages = this.state.messages.map(message => {
       if (message.id === id) {
         message.read = !message.read;
