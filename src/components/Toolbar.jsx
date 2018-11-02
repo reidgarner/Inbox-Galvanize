@@ -14,7 +14,7 @@ const Toolbar = (props) => {
                     <i class={false ? "fa fa-check-square-o" : "fa fa-minus-square-o"}></i>
                 </button>
 
-                <button class="btn btn-default">
+                <button onClick={props.markAsReadButtonClicked} class="btn btn-default">
                     Mark As Read
                 </button>
 
